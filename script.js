@@ -206,6 +206,37 @@ Return '00:01:00'.
 // 1. 12AM --> 00
 // 2. 1AM to 12PM --> stays the same, do nothing
 // 3. 1PM to 11PM --> add 12 to origin hour
-function timeConversion(s) {
+// 9 indices, 'AM' 'PM' starts at index 8
 
+function timeConversion(s) {
+    // Set 'AM' or 'PM' to variable at index 8
+    let amPm = s.charAt(8);
+    // Set military hour to variable to hold time, minutes and seconds are the same
+    let militaryHour = "";
+
+    // check if amPm equals 'A' and if first two characters equal 12
+    // if first two index equals '1' and '2' ('12'), set militaryHour to '00'
+    if (amPm == "A") {
+        if (s.substring(0, 2) == "12") {
+            militaryHour = "00";
+        }
+        // else military time stays the same (s.substring(0,2))
+        else {
+            militaryHour = s.substring(0, 2);
+        }
+    }
+    // since amPm does not equal 'A'
+    else {
+        if (s.substring(0, 2) == "12") {
+
+        } else {
+            // add 12 to subString and parseInt to convert string to integer
+            // 10 indicates base 10
+            militaryHour = parseInt(s.substring(0, 2), 10) + 12;
+        }
+    }
+    // return militaryHour plus the rest of the string indices without the 'AM' 'PM' part
+    return militaryHour + s.substring(2, 8);
 }
+
+console.log(timeConversion('07:05:45PM'));
