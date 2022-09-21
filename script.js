@@ -93,3 +93,119 @@ function printUser({ name, age, favoriteFood = "watermelon" }) {
 
 // Pass personThree to printUser() above
 printUser(personThree);
+
+
+
+// HACKERRANK 'Plus Minus' problem -------------------------------------------------------------------------------------------------
+/*
+Given an array of integers, calculate the ratios of its elements that are positive, negative, and zero. 
+Print the decimal value of each fraction on a new line with  places after the decimal.
+
+Note: This challenge introduces precision problems. The test cases are scaled to six decimal places, 
+though answers with absolute error of up to  are acceptable.
+*/
+
+// 1. Count length of array and loop through array
+// 2. Count numbers that are positive: greater than zero
+// 3. Count numbers that are negative: less than zero
+// 4. Count numbers that are zero
+// 5. Divide numbers by length
+// 6. Print out ratios for each
+
+function plusMinus(arr) {
+    let n = arr.length;
+    // store positive, negative, and zero counts in variable
+    let positive = 0;
+    let negative = 0;
+    let zero = 0;
+
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 0) {
+            positive++
+        }
+        else if (arr[i] < 0) {
+            negative++
+        }
+        else {
+            zero++
+        }
+    }
+
+    let positiveRatio = positive / n;
+    let negativeRatio = negative / n;
+    let zeroRatio = zero / n;
+
+    console.log(positiveRatio.toFixed(6) + "\n" + negativeRatio.toFixed(6) + "\n" + zeroRatio.toFixed(6));
+};
+
+let arrayRatios = plusMinus([1, -2, 3, 4, 0]);
+// console.log(arrayRatios);
+
+
+/*
+Problem 2: 
+    Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. 
+    Then print the respective minimum and maximum values as a single line of two space-separated long integers.
+
+    Example: arr = [1, 3, 5, 7, 9]
+
+    The minimum sum is 1 + 3 + 5 + 7 = 16  and the maximum sum is 3 + 5 + 7 + 9 = 24. The function prints: 16 24 
+*/
+
+function minMax(arr) {
+    let max = arr[0];
+    let min = arr[0];
+    let sum = 0;
+
+    // Loop through array to find max and min
+    for (let i = 0; i < 5; i++) {
+        // if max is < the next number in array, set max to that next number
+        if (max < arr[i]) { // max is 1, 1 < 2 so max = 2
+            max = arr[i];
+            console.log('max is: ' + max);
+        }
+
+        // if min is > the next number in array, set min to that next number 
+        if (min > arr[i]) { // min is 1, 1 is not greater than 2 so min stays 1
+            min = arr[i];
+            console.log('min is: ' + min);
+        }
+        sum += arr[i]
+    }
+
+    console.log('sum is: ' + sum);  // 15
+    console.log('min is: ' + min);  // 1
+    console.log('max is: ' + max);  // 5
+    // Subtract sum by min to get maxSum (15 - 1 = 14)
+    let maxSum = sum - min;
+    // Subtract sum by max to get minSum (15 - 5 = 10)
+    let minSum = sum - max;
+    console.log(minSum + " " + maxSum);
+}
+
+let minMaxSum = minMax([1, 2, 3, 4, 5])
+
+/*
+PROBLEM 3. Time Conversion
+
+Given a time in 12-hour AM/PM format, convert it to military (24-hour) time.
+
+Note: - 12:00:00AM on a 12-hour clock is 00:00:00 on a 24-hour clock.
+- 12:00:00PM on a 12-hour clock is 12:00:00 on a 24-hour clock.
+
+Example
+- s = '12:01:00PM'
+
+Return '12:01:00'.
+
+- s = '12:01:00AM
+Return '00:01:00'.
+*/
+
+// 3 cases
+// 1. 12AM --> 00
+// 2. 1AM to 12PM --> stays the same, do nothing
+// 3. 1PM to 11PM --> add 12 to origin hour
+function timeConversion(s) {
+
+}
