@@ -240,3 +240,30 @@ function timeConversion(s) {
 }
 
 console.log(timeConversion('07:05:45PM'));
+
+
+/*
+PROBLEM 4. Find the median of an array
+*/
+
+function findMedian(arr) {
+    // sort array 
+    arr.sort(function (a, b) {
+        return a - b
+    });
+
+    // divide array length by 2
+    let half = Math.floor(arr.length / 2);
+    // console.log('half is: ' + half);
+    if (arr.length % 2) {
+        return arr[half]
+    }
+    else {
+        return (arr[half - 1] + arr[half]) / 2.0;
+    }
+}
+
+let medianTest = findMedian([1, 5, 6, 2, 7]);
+// sorted 1, 2, 5, 6, 7
+// Print: 5
+console.log(medianTest);
